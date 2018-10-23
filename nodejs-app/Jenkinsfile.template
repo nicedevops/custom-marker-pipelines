@@ -22,4 +22,21 @@ pipeline {
       }
     }
   }
+  stage('Deploy') {
+      when {
+        beforeAgent true
+        branch 'master'
+      }
+      options {
+        timeout(time: 60, unit: 'SECONDS') 
+      }
+      input {
+        message "Should we deploy?"
+        submitter "shalini"
+        submitterParameter "APPROVER"
+      }
+      steps {
+        echo "Continuing with deployment"
+      }
+    }
 }
